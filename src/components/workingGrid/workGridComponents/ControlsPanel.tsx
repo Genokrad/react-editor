@@ -4,12 +4,13 @@ import TrashTopIcon from "../../../assets/trash";
 
 interface ControlsPanelProps {
   changeIndexOfComponent: (mark: string) => void;
-  stopPropagation: (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => void;
+  deleteComponent: () => void;
+  copyComponent: () => void;
 }
 
-const ControlsPanel: React.FC<ControlsPanelProps> = ({ changeIndexOfComponent, stopPropagation }) => {
+const ControlsPanel: React.FC<ControlsPanelProps> = ({ changeIndexOfComponent, deleteComponent, copyComponent }) => {
   return (
-    <ul className="h-[27px] absolute right-[10px] top-[-27px] flex gap-[5px] items-center cursor-default" onClick={stopPropagation}>
+    <ul className="h-[27px] absolute right-[10px] top-[-27px] flex gap-[5px] items-center cursor-default" onClick={(e) => {e.stopPropagation();}}>
       <li className="flex gap-[5px] bg-blue-400 p-[3px] h-full w-full items-center rounded-t-[3px]">
         <button className="p-[3px] cursor-pointer" onClick={() => changeIndexOfComponent('down')}>
           <ArrowTopIcon />
@@ -19,10 +20,10 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({ changeIndexOfComponent, s
         </button>
       </li>
       <li className="flex gap-[5px] bg-blue-300 p-[3px] h-full w-full items-center rounded-t-[3px]">
-        <button className="p-[3px] bg-cyan-600 rounded-sm cursor-pointer" onClick={() => console.log("Copy clicked")}>
+        <button className="p-[3px] bg-cyan-600 rounded-sm cursor-pointer" onClick={copyComponent}>
           <CopyTopIcon />
         </button>
-        <button className="p-[3px] rounded-sm cursor-pointer" onClick={() => console.log("Trash clicked")}>
+        <button className="p-[3px] rounded-sm cursor-pointer" onClick={deleteComponent}>
           <TrashTopIcon />
         </button>
       </li>

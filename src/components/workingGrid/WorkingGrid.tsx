@@ -24,7 +24,7 @@ interface WorkingGridProps {
 
 const WorkingGrid: React.FC<WorkingGridProps> = ({ components }) => {
   return (
-    <ul className='py-[30px] px-[25px] flex flex-col gap-[15px] bg-blue-50'>
+    <ul className='py-[30px] px-[25px] flex flex-col gap-[15px] bg-blue-50 border-x-[1px] border-teal-700 border-opacity-15'>
       {
         components.map((component) => (
           <ActionBlock

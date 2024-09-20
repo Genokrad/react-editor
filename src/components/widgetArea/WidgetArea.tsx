@@ -25,7 +25,7 @@ const WidgetArea = () => {
 
     return (
       <section className='p-[30px]'>
-        <ul className="grid grid-cols-2 gap-[10px]">
+        <ul className="grid grid-cols-2 gap-[10px] justify-center items-center">
           {types.map((type, index) => (
             <li
               draggable='true'
@@ -41,7 +41,9 @@ const WidgetArea = () => {
                 cursor-pointer
                 flex-col
                 gap-[10px]
-                w-[100px]
+                w-full
+                lg:w-[100px]
+
               "
               onClick={() => setNewComponentHandler(type)}
               onDragStart={(e) => console.log('dragging', e)}

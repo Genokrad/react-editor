@@ -27,6 +27,9 @@ export const componentsSlice = createSlice({
     },
     updateComponents: (state, action: PayloadAction<Component[]>) => {
       state.components = action.payload;
+    },
+    deleteFromStore: (state, action: PayloadAction<number>) => {
+      state.components = state.components.filter(component => component.id !== action.payload);
     }
   },
 });
@@ -35,6 +38,7 @@ export const {
   setNewComponent,
   updateComponent,
   updateComponents,
+  deleteFromStore,
 } = componentsSlice.actions;
 
 export default componentsSlice.reducer;
