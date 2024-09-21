@@ -15,26 +15,24 @@ const MainContent = () => {
     setComponents(componentsFromRedux);
   }, [componentsFromRedux]);
 
-  // Обработчик для drop
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const componentType = e.dataTransfer.getData('componentType');
     
-    // Если данные есть, вызываем setNewComponentHandler для добавления нового компонента
     if (componentType) {
       dispatch(setNewComponent({ type: componentType, id: components.length }));
     }
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault(); // Не даем браузеру обрабатывать событие
+    e.preventDefault(); 
   };
 
 
   return (
     <section 
       className="grid flex-wrap w-full lg:grid-rows-1 lg:grid-cols-2 lg:h-[100vh]" 
-      onDrop={handleDrop} // Обработка сброса
+      onDrop={handleDrop}
       onDragOver={handleDragOver}
     >
       <WorkingGrid components={components}/>
