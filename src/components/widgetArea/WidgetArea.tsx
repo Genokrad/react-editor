@@ -18,6 +18,15 @@ const WidgetArea = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const components = useSelector((state: any) => state.components.components);
+  
+  const blockDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+    e.preventDefault();
+  }
+
+  const handleDragStart = (e: React.DragEvent<HTMLLIElement>, type: string) => {
+    // Передаем тип компонента через dataTransfer
+    e.dataTransfer.setData('componentType', type);
+  };
 
   const setNewComponentHandler = (type: string) => {
     dispatch(setNewComponent({type: type, id: components.length}));
@@ -46,8 +55,8 @@ const WidgetArea = () => {
 
               "
               onClick={() => setNewComponentHandler(type)}
-              onDragStart={(e) => console.log('dragging', e)}
-              onDrop={(e) => console.log('dragover', e)}
+              onDragStart={(e) => handleDragStart(e, type)} // Передаем тип компонента
+              onDragOver={blockDragOver}
             >
               <img src={icons[type]} className="logo" alt={`${type} logo`} />
               <p className='text-xs font-normal leading-[1.5] tracking-[0.24px]'>{type}</p>
@@ -58,5 +67,6 @@ const WidgetArea = () => {
       </section>
     );
   };
+
 
 export default WidgetArea;

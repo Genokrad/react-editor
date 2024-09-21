@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateComponent, updateComponents, deleteFromStore, setNewComponent } from "../../../features/components/componentsSlice";
 import ControlsPanel from "./ControlsPanel";
+import { v4 as uuidv4 } from 'uuid';
 
 interface Component {
   type: string;
@@ -83,7 +84,7 @@ const ActionBlock: React.FC<WorkingGridProps> = ({ component, logo, components }
   
   const copyComponent = () => {
     const clonedComponent = JSON.parse(JSON.stringify(components[components.indexOf(component)]));
-    clonedComponent.id = components.length;
+    clonedComponent.id = uuidv4();
 
     dispatch(setNewComponent(clonedComponent));
   };
